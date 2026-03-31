@@ -21,12 +21,44 @@ document.getElementById('quoteForm').addEventListener('submit', function(e) {
     return;
   }
   
-  // Show success message
-  alert(`Thank you, ${name}! Your quote request has been received.`);
-  
-  // Reset form
-  this.reset();
-  
-  // In a real application, you would send this data to a server
-  console.log('Quote Request:', { name, email, phone, description });
-}
+  // Prepare form data
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('phone', phone);
+  formData.append('description', description);
+  formData.append('_subject', 'New Junk Quote Request');
+
+  const messageDiv = document.getElementById('formMessage');
+  const submitBtn = this.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  messageDiv.textContent = '';
+  messageDiv.className = 'form-message';
+
+  // Send to Formspree
+  fetch('https://formspree.io/f/xreoqnad', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    submitBtn.disabled = false;
+    if (response.ok) {
+      messageDiv.textContent = `Thank you, ${name}! Your quote request has been sent successfully.`;
+      messageDiv.classList.add('form-message-success');
+      document.getElementById('quoteForm').reset();
+    } else {
+      throw new Error('Network response was not ok.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    submitBtn.disabled = false;
+    messageDiv.textContent = 'Sorry, there was an error sending your request. Please try again or contact us directly.';
+    messageDiv.classList.add('form-message-error');
+  });
+});
+
+
