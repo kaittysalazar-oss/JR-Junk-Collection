@@ -6,7 +6,7 @@
   <title>JR Junk Collection LLC | Professional Junk Removal Services</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
 </head>
 
 <body>
@@ -16,7 +16,6 @@
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#quote">Get Quote</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -43,7 +42,7 @@
           <p>We safely remove and dispose of old furniture items from your home or business.</p>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-microwave"></i></div>
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
           <h3>Appliance Pickup</h3>
           <p>Professional removal of old appliances, refrigerators, washers, and more.</p>
         </div>
@@ -64,7 +63,9 @@
   <section class="quote-section" id="quote">
     <div class="container">
       <h2>Get a Free Quote</h2>
-      <form id="quoteForm" class="quote-form">
+      <div class="form-message" id="formMessage" aria-live="polite"></div>
+      <form id="quoteForm" class="quote-form" action="https://formspree.io/f/xreoqnad" method="POST">
+        <input type="hidden" name="_subject" value="New Junk Quote Request">
         <div class="form-group">
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" required>
@@ -86,14 +87,8 @@
     </div>
   </section>
 
-  <footer id="contact">
+  <footer>
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Contact Info</h3>
-          <p>Email: <a href="mailto:jrjunkbusiness@gmail.com">jrjunkbusiness@gmail.com</a></p>
-        </div>
-      </div>
       <p class="footer-bottom">&copy; JR Junk Collection LLC. All rights reserved.</p>
     </div>
   </footer>
